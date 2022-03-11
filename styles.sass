@@ -1,0 +1,47 @@
+@use 'reset'
+@import url('https://fonts.googleapis.com/css2?family=Inconsolata:wght@300&display=swap')
+
+$font-stack: 'Inconsolata', monospace
+    
+//Base color palette
+$background: #ffffff
+$border: #424242
+$text-color: #000000
+$button: #7c7c7c
+
+
+*
+    margin: 0
+    box-sizing: border-box
+
+html
+    position: relative
+    height: 100%
+
+body
+    font-family: $font-stack
+    min-height: 100vh
+    margin: 0
+    display: grid
+    grid-template-columns: auto 1fr
+    .menu
+        display: flex
+        flex-direction: column
+        justify-content: center
+        gap: 1%
+    .game-board
+        margin: auto
+        display: grid
+        max-height: 80%
+        max-width: 80%
+        grid-template: 1fr 1fr 1fr / 1fr 1fr 1fr
+        gap: 10px
+        aspect-ratio: 1
+        .cell
+            border: solid 2px $border
+            min-width: 150px
+            min-height: 150px
+            padding: 10%
+            user-select: none
+
+
