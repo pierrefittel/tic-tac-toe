@@ -1,6 +1,7 @@
 const gameLogic = (() => {
     const newGame = () => {
         gameView.resetBoard();
+        turn = 0;
         playerOne = Player(1);
         playerTwo = Player(2);
         gameView.displayName('player-1-name', playerOne.name);
@@ -50,12 +51,10 @@ const gameLogic = (() => {
             gameView.displayWinner();
             gameView.removeEvent();
             gameView.resetMenu();
-            turn = 0;
         } else if (controller === false && turn === 8) {
             gameView.displayTie();
             gameView.removeEvent();
             gameView.resetMenu();
-            turn = 0;
         }
     };
     return {newGame, gameController,};
