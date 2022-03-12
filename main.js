@@ -50,10 +50,12 @@ const gameLogic = (() => {
             gameView.displayWinner();
             gameView.removeEvent();
             gameView.resetMenu();
+            turn = 0;
         } else if (controller === false && turn === 8) {
             gameView.displayTie();
             gameView.removeEvent();
             gameView.resetMenu();
+            turn = 0;
         }
     };
     return {newGame, gameController,};
