@@ -1,9 +1,10 @@
 const gameLogic = (() => {
-    //Creates a new empty virtual game board array.
     const newGame = () => {
         gameView.resetBoard();
         playerOne = Player(1);
         playerTwo = Player(2);
+        gameView.displayName('player-1-name', playerOne.name);
+        gameView.displayName('player-2-name', playerTwo.name);
         turnSide = playerOne.side;
         gameView.addEvent();
     };
@@ -45,7 +46,15 @@ const gameLogic = (() => {
     const gameController = () => {
         let boardMap = mapBoard();
         controller = checkWin(boardMap);
-        if (controller === true) { gameView.displayWinner(); gameView.removeEvent; }
+        if (controller === true) { 
+            gameView.displayWinner();
+            gameView.removeEvent();
+            gameView.resetMenu();
+        } else if (controller === false && turn === 8) {
+            gameView.displayTie();
+            gameView.removeEvent();
+            gameView.resetMenu();
+        }
     };
     return {newGame, gameController,};
 })();
@@ -55,6 +64,29 @@ const gameView = (() => {
         cells = document.querySelectorAll(".cell");
         cells.forEach(cell => { cell.innerHTML = ''; });
         document.getElementById('winner').innerHTML = '';
+        title = document.getElementById('title');
+        title.style.display = 'flex';
+        winner = document.getElementById('winner');
+        winner.style.display = 'none';
+    };
+    const resetMenu = () => {
+        field = document.getElementsByClassName('player-name')
+        for (let i of field) {
+            i.style.display = 'block';
+            i.innerHTML = '';
+        }
+        input = document.getElementsByTagName('input');
+        for (let i of input) {
+            i.style.display = 'block';
+            i.value = '';
+        }
+    };
+    const displayName = (player, playerName) => {
+        field = document.getElementById(`${player}`)
+        field.innerHTML = playerName;
+        field.style.display = 'block';
+        input = document.getElementsByTagName('input');
+        for (let i of input) { i.style.display = 'none' };
     };
     const addEvent = () => {
         elements = document.querySelectorAll(".cell");
@@ -67,7 +99,7 @@ const gameView = (() => {
         elements.forEach(element => {
             element.removeEventListener("click", updateCell);
         });
-    }
+    };
     const updateCell = () => {
         event.target.innerHTML = turnSide;
         gameLogic.gameController();
@@ -75,10 +107,22 @@ const gameView = (() => {
         turn++;
     };
     const displayWinner = () => {
-        winner = (playerOne.side === turnSide) ? playerOne.name : playerTwo.name;
-        document.getElementById('winner').innerHTML = `Player ${winner} has won the game!`;
-    }
-    return {addEvent, resetBoard, displayWinner, removeEvent};
+        title = document.getElementById('title');
+        title.style.display = 'none';
+        winnerName = (playerOne.side === turnSide) ? playerOne.name : playerTwo.name;
+        winner = document.getElementById('winner');
+        winner.innerHTML = `Player ${winnerName} has won the game!`;
+        winner.style.display = 'block';
+    };
+    const displayTie = () => {
+        title = document.getElementById('title');
+        title.style.display = 'none';
+        winnerName = (playerOne.side === turnSide) ? playerOne.name : playerTwo.name;
+        winner = document.getElementById('winner');
+        winner.innerHTML = 'This is a tie! Play again...';
+        winner.style.display = 'block';
+    };
+    return {addEvent, resetBoard, displayWinner, removeEvent, displayName, resetMenu, displayTie};
 })();
 
 const Player = (i) => {
@@ -92,6 +136,6 @@ newGame = document.getElementById("new-game");
 newGame.addEventListener("click", gameLogic.newGame);
 
 let playerOne = null;
-let playerTwo = null
+let playerTwo = null;
 let turnSide = null;
 let turn = 0;

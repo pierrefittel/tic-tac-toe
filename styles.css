@@ -60,31 +60,84 @@ body {
   min-height: 100vh;
   margin: 0;
   display: grid;
-  grid-template-columns: auto 1fr;
+  justify-content: center;
+  align-content: center;
+  grid-template-rows: 10% 20% 50%;
+}
+body .title {
+  font-size: 3em;
+  font-weight: bold;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+body .winner {
+  text-align: center;
+  display: none;
+  font-size: 1.5em;
+  letter-spacing: 4px;
+  font-weight: bolder;
 }
 body .menu {
+  width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  gap: 1%;
+  align-items: center;
+  gap: 1em;
+}
+body .menu .side, body .menu img {
+  gap: 10px;
+  font-size: 1em;
+  letter-spacing: 4px;
+  font-weight: bolder;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 40px;
+}
+body .menu input {
+  text-align: center;
+  font-size: 1em;
+  letter-spacing: 4px;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  outline: none;
+}
+body .menu button {
+  background-color: white;
+  border: solid 2px #424242;
+  padding: 10px;
+  font-size: 1.5em;
+  transition-duration: 0.1s;
+}
+body .menu button:hover {
+  border-radius: 6px;
+}
+body .menu button:active {
+  background-color: #7c7c7c;
+  color: #ffffff;
+}
+body .menu .player-name {
+  display: none;
 }
 body .game-board {
-  margin: auto;
   display: grid;
-  max-height: 80%;
-  max-width: 80%;
   grid-template: 1fr 1fr 1fr/1fr 1fr 1fr;
   gap: 10px;
   aspect-ratio: 1;
 }
 body .game-board .cell {
   font-weight: bolder;
-  font-size: 3em;
+  font-size: 6em;
   border: solid 2px #424242;
   min-width: 150px;
   min-height: 150px;
-  padding: 10%;
   user-select: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 /*# sourceMappingURL=styles.css.map */

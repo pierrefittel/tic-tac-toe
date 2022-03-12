@@ -10,13 +10,12 @@
     <title>Tic Tac Toe</title>
 </head>
 <body>
+    <div class="title" id="title">Tic Tac Toe</div>
+    <div class="winner" id="winner"></div>
     <div class="menu">
-        <div class="side" value="x"><img src="./images/x.svg" alt="x"></div>
-        <input type="text" name="name" id="player-1" placeholder="Player One name">
-        <div class="side" value="o"><img src="./images/o.svg" alt="o"></div>
-        <input type="text" name="name" id="player-2" placeholder="Player Two name">
+        <div class="side" value="x"><img src="./images/x.svg" alt="x"><div class="player-name" id="player-1-name"></div><input type="text" name="name" id="player-1" placeholder="Player One name"></div>
+        <div class="side" value="o"><img src="./images/o.svg" alt="o"><div class="player-name" id="player-2-name"></div><input type="text" name="name" id="player-2" placeholder="Player Two name"></div>
         <button id="new-game">New Game</button>
-        <div class="winner" id="winner"></div>
     </div>
     <div class="game-board" id="game-board">
         <div class="cell" id="cell-1"></div>
