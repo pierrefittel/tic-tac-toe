@@ -104,7 +104,7 @@ const gameView = (() => {
     const updateCell = () => {
         event.target.innerHTML = turnSide;
         gameLogic.gameController();
-        turnSide = (turnSide === 'x') ? 'o' : 'x';
+        turnSide = (turnSide === playerOne.side) ? playerTwo.side : playerOne.side;
         turn++;
     };
     const displayWinner = () => {
